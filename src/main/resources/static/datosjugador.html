@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumir API desde GitHub Pages</title>
+</head>
+<body>
+<h1>Datos del Jugador</h1>
+<div id="jugador-info"></div>
+
+<script>
+    // JavaScript para consumir la API
+    document.addEventListener('DOMContentLoaded', function() {
+        // URL de tu API en Spring que devuelve los datos del jugador
+        var apiUrl = 'http://localhost:8080/api/jugador';
+
+        // Realizar solicitud GET utilizando Fetch API
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Manipular los datos recibidos
+                var jugadorInfo = document.getElementById('jugador-info');
+                jugadorInfo.innerHTML = `
+                        <p><strong>ID:</strong> ${data.id}</p>
+                        <p><strong>Nombre:</strong> ${data.nombre}</p>
+                        <p><strong>Monedas:</strong> ${data.monedas}</p>
+                    `;
+            })
+            .catch(error => {
+                console.error('Error al obtener los datos del jugador:', error);
+                var jugadorInfo = document.getElementById('jugador-info');
+                jugadorInfo.innerHTML = 'Error al obtener los datos del jugador.';
+            });
+    });
+</script>
+</body>
+</html>
