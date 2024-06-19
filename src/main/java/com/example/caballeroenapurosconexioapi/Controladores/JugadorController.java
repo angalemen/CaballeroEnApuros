@@ -11,17 +11,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "https://angalemen.github.io/CaballeroenApuros/")
+@CrossOrigin(origins = "https://snazzy-otter-3796ba.netlify.app/")
 public class JugadorController {
 
-    @GetMapping("/jugador")
+    @GetMapping("/jugadores")
     public Jugador getJugador() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         File file = new File("src/main/resources/static/datos.json");
         return mapper.readValue(file, Jugador.class);
     }
 
-    @PostMapping("/jugador")
+    @PostMapping("/jugadores")
     public void saveJugador(@RequestBody Jugador jugador) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         File file = new File("src/main/resources/static/datos.json");
